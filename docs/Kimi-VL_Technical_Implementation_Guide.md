@@ -41,7 +41,6 @@ class KimiVLService:
         # Generate response
         with torch.no_grad():
             outputs = self.model.generate(**inputs, max_length=512)
-        
         response = self.processor.decode(outputs[0], skip_special_tokens=True)
         return response
 ```
@@ -627,4 +626,4 @@ class Config:
 config = Config.load()
 ```
 
-This technical implementation guide provides practical code examples and configuration for building the Kimi-VL document digitization system. The guide covers all major components from basic Kimi-VL integration to production-ready deployment configurations. 
+This technical implementation guide provides practical code examples and configuration for building the document digitization system. The guide covers all major components from basic Kimi-VL integration to production-ready deployment configurations. 

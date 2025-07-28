@@ -8,7 +8,7 @@
 
 ## **Executive Summary**
 
-This document provides specific, actionable prompts to complete comprehensive documentation for the Kimi-VL Document Digitization System. The prompts are designed following the constraints and best practices outlined in `rule/constrains.md`, emphasizing:
+This document provides specific, actionable prompts to complete comprehensive documentation for the project. The prompts are designed following the constraints and best practices outlined in `rule/constrains.md`, emphasizing:
 
 - **Multi-agent collaboration** and modular architectures
 - **Iterative refinement** and self-correction mechanisms  

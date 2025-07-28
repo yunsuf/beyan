@@ -1,4 +1,4 @@
-# Kimi-VL Document Digitization System - Quick Start Guide
+# Document Digitization System - Quick Start Guide
 
 > **Get up and running in 30 minutes**
 
@@ -339,4 +339,4 @@ PERFORMANCE_CONFIG = {
 
 ---
 
-*This quick start guide gets you up and running with the Kimi-VL document digitization system. For detailed implementation, refer to the comprehensive system design and technical implementation guides.* 
+*This quick start guide gets you up and running with the document digitization system. For detailed implementation, refer to the comprehensive system design and technical implementation guides.* 

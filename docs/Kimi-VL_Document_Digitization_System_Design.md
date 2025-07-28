@@ -1,4 +1,4 @@
-# Kimi-VL Document Digitization System Design
+# Document Digitization System Design
 
 > **Version:** 1.0  
 > **Date:** January 28, 2025  
@@ -9,17 +9,11 @@
 
 ## Executive Summary
 
-This document presents a comprehensive system design for an advanced document digitization system leveraging **Kimi-VL** (Kimi Vision Language Model) as the core cognitive engine. The system is designed to automatically process, classify, and extract structured data from diverse business documents including commercial invoices, packing lists, and certificates, with a focus on the sample documents provided in the `/muaz` folder.
+This document presents a comprehensive system design for an advanced document digitization system leveraging **Kimi-VL** (Kimi Vision Language Model) as the core cognitive engine. The system is designed to automatically process, classify, and extract structured data from diverse business documents including commercial invoices, packing lists, and certificates, with a focus on the sample documents provided in the `/sample_docs` folder.
 
 ### Problem Statement
 
-The organization currently faces significant challenges in document processing:
 
-1. **Manual Processing Bottleneck**: Documents require manual data entry, leading to delays and errors
-2. **Document Diversity**: Multiple document types (invoices, packing lists, certificates) with varying layouts
-3. **Data Quality Issues**: Human errors in transcription and data entry
-4. **Scalability Limitations**: Current manual process cannot handle increasing document volumes
-5. **Integration Complexity**: Need to integrate with existing database and API infrastructure
 
 ### Proposed Solution
 
@@ -1241,4 +1235,4 @@ paths:
 
 ---
 
-*This document provides a comprehensive blueprint for implementing a Kimi-VL-powered document digitization system. The design emphasizes accuracy, scalability, and maintainability while leveraging the advanced capabilities of Kimi-VL for superior document understanding.* 
+*This document provides a comprehensive blueprint for implementing a document digitization system. The design emphasizes accuracy, scalability, and maintainability while leveraging the advanced capabilities of Kimi-VL for superior document understanding.* 

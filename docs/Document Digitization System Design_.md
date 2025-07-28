@@ -6,15 +6,17 @@
 
 ### **Purpose**
 
-This document presents a comprehensive system design for an advanced, agentic Intelligent Document Processing (IDP) system, codenamed "Project Digitize." The system is engineered to automate the extraction and integration of data from diverse business documents, thereby replacing the current manual data entry workflow. The objective is to provide a detailed architectural blueprint that serves as the foundation for the development, deployment, and evolution of a scalable, accurate, and intelligent automation solution.
+This document presents a comprehensive system design for an advanced, agentic Intelligent Document Processing (IDP) system, codenamed "Project Digitize." The system is engineered to automate the extraction and integration of data from diverse business documents, thereby replacing the current manual data entry workflow.
+
+
 
 ### **Problem Statement**
 
-The organization currently relies on a manual data entry process to digitize information from critical business documents, such as commercial invoices and packing lists. This manual approach is inherently slow, costly, and susceptible to human error, creating operational bottlenecks and compromising data integrity. The significant variation in document layouts and formats, as seen in examples from different suppliers like Samsung and Janssen 1, renders traditional, template-based automation methods ineffective and brittle. The challenge is to create a unified system that can intelligently handle this variability, scale with a "huge database" of existing records, and integrate seamlessly with a complex ecosystem of existing APIs for data validation and updates.
+
 
 ### **Proposed Solution**
 
-The proposed solution is a hierarchical multi-agent system (MAS) that orchestrates a team of specialized AI agents to perform the end-to-end document processing workflow. This architecture is designed for modularity, scalability, and resilience. The cognitive core of the system will be a state-of-the-art, layout-aware Large Language Model (LLM), chosen for its superior ability to understand and extract data from complex, unstructured, and variable document formats without relying on rigid templates.
+The proposed solution is a hierarchical multi-agent system (MAS) that orchestrates a team of specialized AI agents to perform the end-to-end document processing workflow. This architecture is designed for modularity, scalability, and resilience.
 
 This core extraction capability is supported by a robust, multi-stage validation framework to ensure data accuracy, a Human-in-the-Loop (HITL) subsystem to manage exceptions and provide quality assurance, and a continual learning mechanism that uses human feedback to systematically improve model performance over time. The entire workflow is managed by a durable orchestration engine, ensuring reliable execution of long-running, asynchronous processes.
 
@@ -24,7 +26,7 @@ The implementation of Project Digitize will yield transformative benefits, align
 
 * **Increase Efficiency and Reduce Costs:** By automating repetitive data entry, the system will dramatically lower the per-document processing cost and time, freeing human operators to focus on higher-value, strategic activities.2  
 * **Enhance Data Accuracy:** The combination of intelligent extraction, automated validation rules, and targeted human review will significantly reduce the error rates associated with manual entry, leading to more reliable data in downstream systems.4  
-* **Improve Scalability and Flexibility:** The agent-based, cloud-native architecture is designed to handle fluctuating document volumes on demand. It can be easily extended to support new document types with minimal redevelopment effort, providing a future-proof platform for business growth.7  
+* **Improve Scalability and Flexibility:** The agent-based architecture is designed to handle fluctuating document volumes on demand. It can be easily extended to support new document types with minimal redevelopment effort, providing a future-proof platform for business growth.7  
 * **Accelerate Business Processes:** Faster document processing will reduce turnaround times for critical functions like accounts payable, logistics, and inventory management, overcoming existing bottlenecks.5
 
 ### **Structure of this Document**
@@ -41,10 +43,10 @@ This section establishes the foundational architectural philosophy for Project D
 
 The challenge of processing a high volume of documents with diverse layouts necessitates an architecture that is inherently flexible, robust, and maintainable. A single, monolithic application, while seemingly simpler to conceptualize, would quickly become a bottleneck. Such a system would be brittle, with any change or failure in one part of the logic risking the entire process. It would be difficult to update, maintain, and scale, particularly as new document formats are introduced. The user's request for an "agentic system" is a strategically sound starting point that directly addresses these challenges.
 
-A multi-agent system (MAS) is an architecture composed of multiple autonomous, intelligent agents that interact with each other within a shared environment to achieve a common goal.7 This design paradigm is analogous to modern software engineering principles like microservices, where a large, complex problem is decomposed into smaller, specialized, and more manageable sub-problems.7 Adopting a MAS approach for Project Digitize provides several decisive advantages:
+A multi-agent system (MAS) is an architecture composed of multiple autonomous, intelligent agents that interact with each other within a shared environment to achieve a common goal.7 This design paradigm provides several decisive advantages:
 
 * **Specialization and Enhanced Problem-Solving:** Each agent is designed to be an expert in a specific domain. For instance, one agent specializes in image pre-processing, another in data extraction, and a third in data validation. This division of labor allows for the use of the best-suited technology for each sub-task, leading to a form of "collective intelligence" that is more powerful than a single, general-purpose system.7  
-* **Scalability and Flexibility:** The agents are decoupled components. This means they can be developed, deployed, and scaled independently. During periods of high document influx, the system can dynamically increase the number of Extraction Agents to handle the load without impacting the performance of the Ingestion or Validation Agents. This elasticity is a critical requirement for supporting the existing "huge database" and future growth.7  
+* **Scalability and Flexibility:** The agents are decoupled components. This means they can be developed, deployed, and scaled independently. During periods of high document influx, the system can dynamically increase the number of Extraction Agents to handle the load without impacting the performance of the Ingestion or Validation Agents.7  
 * **Resilience and Fault Tolerance:** As a distributed system, the MAS is inherently more resilient. The failure of a single agent does not necessarily halt the entire system. Workflows can be designed with robust error-handling mechanisms, such as automated retries for an individual agent's task, ensuring that transient issues do not cause catastrophic failures.7  
 * **Maintainability and Evolvability:** The modular nature of the MAS simplifies the development and maintenance lifecycle. An individual agent can be updated, improved, or even completely replaced with a new technology without requiring a full system redeployment. This makes the system easier to adapt to future business needs and technological advancements.
 
@@ -106,7 +108,7 @@ graph TD
 
 ## **Section 2: The Agentic Workforce: Roles, Responsibilities, and Technologies**
 
-This section serves as the detailed specification for each component of the multi-agent system. It dissects the architecture into its constituent agents, defining the specific function, underlying technology, and contribution of each member of the agentic workforce. The following table provides a high-level summary for reference.
+This section serves as the detailed specification for each component of the system. It dissects the architecture into its constituent agents, defining the specific function, underlying technology, and contribution of each member of the workforce.
 
 **Table 1: Agent Roles and Responsibilities**
 
@@ -232,7 +234,7 @@ The agentic architecture provides a distinct advantage here. Because the Learnin
 
 ## **Section 3: The Document Processing Pipeline in Detail**
 
-This section provides a granular, step-by-step narrative of a single document's journey through the Project Digitize system. It illustrates the concrete interactions between the Orchestrator and the subordinate agents, making the abstract architectural concepts tangible. The sequence diagram below focuses on the critical extraction stage.
+This section provides a granular, step-by-step narrative of a single document's journey through the system. It illustrates the concrete interactions between the Orchestrator and the subordinate agents, making the abstract architectural concepts tangible.
 
 ### **3.1 Stage 1: Document Ingestion and Triage**
 

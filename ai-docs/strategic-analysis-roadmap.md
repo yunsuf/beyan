@@ -8,7 +8,7 @@
 
 ## **Executive Summary**
 
-This strategic analysis provides a comprehensive roadmap for transforming the Kimi-VL Document Digitization System from well-designed documentation into a production-ready, robust multi-agent system. The analysis is grounded in the constraints and best practices outlined in `rule/constrains.md`, emphasizing reliability, human-in-the-loop integration, and iterative refinement.
+This strategic analysis provides a comprehensive roadmap for transforming the project from well-designed documentation into a production-ready, robust multi-agent system. The analysis is grounded in the constraints and best practices outlined in `rule/constrains.md`, emphasizing reliability, human-in-the-loop integration, and iterative refinement.
 
 ---
 

@@ -1,4 +1,4 @@
-# Kimi-VL Document Digitization System - Analysis & Strategic Questions
+# Document Digitization System - Analysis & Strategic Questions
 
 > **Analysis Date:** 2025-07-20  
 > **Project:** Beyan Document Digitization System  
@@ -8,14 +8,16 @@
 
 ## **Executive Summary**
 
-This document provides a comprehensive analysis of the Kimi-VL Document Digitization System project and presents strategic questions to guide development completion. The project has excellent design documentation but requires actual implementation to become production-ready.
+This document provides a comprehensive analysis of the project and presents strategic questions to guide development completion. The project has excellent design documentation but requires actual implementation to become production-ready.
 
 ---
 
 ## **1. Current Project Structure & Understanding**
 
 ### **Project Overview**
-This is a **Kimi-VL-powered document digitization system** designed to automatically process unstructured documents (PDFs, images) and extract structured data. The system focuses on business documents like commercial invoices, packing lists, and certificates.
+This is a document digitization system designed to automatically process unstructured documents (PDFs, images) and extract structured data. The system focuses on business documents like commercial invoices, packing lists, and certificates.
+
+
 
 ### **Core Architecture**
 - **Multi-agent system** with specialized AI agents for different processing stages
