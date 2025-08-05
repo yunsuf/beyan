@@ -1,0 +1,410 @@
+{
+  "name": "Beyan Document Processing Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "process-document",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Document Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "beyan-document-upload"
+    },
+    {
+      "parameters": {
+        "url": "http://kimi-vl:8001/process",
+        "options": {
+          "bodyContentType": "multipart-form-data"
+        },
+        "sendBinaryData": true,
+        "binaryPropertyName": "file"
+      },
+      "id": "kimi-vl-processing",
+      "name": "Kimi-VL Processing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "confidence-check",
+              "leftValue": "={{ $json.data.confidence }}",
+              "rightValue": 0.8,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "confidence-router",
+      "name": "Confidence Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a document classifier. Classify documents into these types: commercial_invoice, packing_list, certificate, or other. Respond ONLY with valid JSON format:\n{\n  \"type\": \"commercial_invoice\",\n  \"confidence\": 0.95,\n  \"characteristics\": [\"has_invoice_number\", \"has_line_items\"],\n  \"reasoning\": \"Document contains invoice number and itemized charges\"\n}"
+          },
+          {
+            "role": "user",
+            "content": "Classify this document content:\n\n{{ $json.data.text_content }}"
+          }
+        ],
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "id": "classification-agent",
+      "name": "OpenAI Classification",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.3,
+      "position": [900, 200],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credentials",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a data extraction specialist. Extract structured data from documents.\n\nFor {{ JSON.parse($('OpenAI Classification').item(0).json.message.content).type }}, extract data matching this schema:\n{\n  \"invoice_number\": \"string\",\n  \"invoice_date\": \"YYYY-MM-DD\",\n  \"seller\": {\"name\": \"string\", \"address\": \"string\"},\n  \"buyer\": {\"name\": \"string\", \"address\": \"string\"},\n  \"line_items\": [{\"description\": \"string\", \"quantity\": \"number\", \"unit_price\": \"number\"}],\n  \"total_amount\": \"number\",\n  \"currency\": \"string\"\n}\n\nRules:\n1. Extract ALL visible data\n2. Maintain exact data types\n3. Use null for missing fields\n4. Preserve original values\n5. Respond ONLY with valid JSON"
+          },
+          {
+            "role": "user",
+            "content": "Extract data from this document:\n\n{{ $json.data.text_content }}"
+          }
+        ],
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "id": "extraction-agent",
+      "name": "OpenAI Extraction",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.3,
+      "position": [1120, 200],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credentials",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4-turbo",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a data validation specialist. Validate extracted data for accuracy and completeness.\n\nFor {{ JSON.parse($('OpenAI Classification').item(0).json.message.content).type }} documents, check:\n1. Required fields are present\n2. Data formats are correct (dates, numbers, emails)\n3. Business logic consistency\n4. Cross-field validation\n\nRespond with JSON:\n{\n  \"validation_passed\": true/false,\n  \"confidence\": 0.0-1.0,\n  \"errors\": [\"list of errors\"],\n  \"warnings\": [\"list of warnings\"],\n  \"completeness_score\": 0.0-1.0\n}"
+          },
+          {
+            "role": "user",
+            "content": "Validate this extracted data:\n\n{{ $('OpenAI Extraction').item(0).json.message.content }}\n\nCheck for completeness, accuracy, and business rule compliance."
+          }
+        ],
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "id": "validation-agent",
+      "name": "OpenAI Validation",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.3,
+      "position": [1340, 200],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credentials",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "validation-check",
+              "leftValue": "={{ JSON.parse($json.message.content).validation_passed }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "validation-router",
+      "name": "Validation Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1560, 200]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "processed_documents",
+        "columns": "filename, classification, extraction, validation, status, created_at",
+        "additionalFields": {},
+        "options": {}
+      },
+      "id": "store-results",
+      "name": "Store Results",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [1780, 120],
+      "credentials": {
+        "postgres": {
+          "id": "postgres-credentials",
+          "name": "PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Document Review Required",
+        "formDescription": "Please review and correct the extracted data for: {{ $('Document Upload Webhook').item(0).json.body.filename }}",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Document Type",
+              "fieldType": "select",
+              "requiredField": true,
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "commercial_invoice"
+                  },
+                  {
+                    "option": "packing_list"
+                  },
+                  {
+                    "option": "certificate"
+                  },
+                  {
+                    "option": "other"
+                  }
+                ]
+              },
+              "defaultValue": "={{ JSON.parse($('OpenAI Classification').item(0).json.message.content).type }}"
+            },
+            {
+              "fieldLabel": "Confidence Assessment",
+              "fieldType": "select",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "correct"
+                  },
+                  {
+                    "option": "needs_minor_correction"
+                  },
+                  {
+                    "option": "needs_major_correction"
+                  },
+                  {
+                    "option": "completely_wrong"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Extracted Data (JSON)",
+              "fieldType": "textarea",
+              "defaultValue": "={{ $('OpenAI Extraction').item(0).json.message.content }}"
+            },
+            {
+              "fieldLabel": "Reviewer Notes",
+              "fieldType": "textarea",
+              "placeholder": "Add any corrections, observations, or feedback..."
+            }
+          ]
+        },
+        "options": {
+          "formSubmittedText": "Thank you! Your review has been submitted and the document will be reprocessed."
+        }
+      },
+      "id": "human-review",
+      "name": "Human Review Form",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2,
+      "position": [900, 400]
+    },
+    {
+      "parameters": {
+        "content": "## Document Processing Complete ✅\n\n**File:** {{ $('Document Upload Webhook').item(0).json.body.filename }}\n**Status:** {{ $json.status || 'Completed' }}\n**Processing Time:** {{ $('Kimi-VL Processing').item(0).json.processing_time }}\n\n### Classification\n- **Type:** {{ JSON.parse($('OpenAI Classification').item(0).json.message.content).type }}\n- **Confidence:** {{ JSON.parse($('OpenAI Classification').item(0).json.message.content).confidence }}\n\n### Validation\n- **Passed:** {{ JSON.parse($('OpenAI Validation').item(0).json.message.content).validation_passed }}\n- **Completeness:** {{ JSON.parse($('OpenAI Validation').item(0).json.message.content).completeness_score }}\n\n### Next Steps\n{{ $json.status === 'completed' ? 'Document successfully processed and stored.' : 'Document requires human review.' }}",
+        "options": {}
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2000, 120]
+    }
+  ],
+  "connections": {
+    "Document Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "Kimi-VL Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kimi-VL Processing": {
+      "main": [
+        [
+          {
+            "node": "Confidence Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confidence Check": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Classification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Human Review Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Classification": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Extraction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Extraction": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Validation": {
+      "main": [
+        [
+          {
+            "node": "Validation Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validation Check": {
+      "main": [
+        [
+          {
+            "node": "Store Results",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Human Review Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Results": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Human Review Form": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Extraction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-01-28T12:00:00.000Z",
+      "updatedAt": "2025-01-28T12:00:00.000Z",
+      "id": "beyan-workflows",
+      "name": "Beyan Workflows"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-28T12:00:00.000Z",
+  "versionId": "1"
+}

@@ -1,0 +1,33 @@
+# Kimi-VL Service Dependencies
+
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# AI/ML Dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.35.0
+pillow>=10.0.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+
+# Kimi-VL (placeholder - replace with actual package)
+# kimi-vl>=1.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.4.0
+httpx>=0.25.0
+aiofiles>=23.2.0
+
+# Logging and Monitoring
+structlog>=23.2.0
+prometheus-client>=0.19.0
+
+# Development
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.9.0
+isort>=5.12.0

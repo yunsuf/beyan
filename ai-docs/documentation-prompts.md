@@ -1,601 +1,531 @@
-# Comprehensive Documentation Prompts for Kimi-VL Document Digitization System
+# Documentation Creation Guide & Prompt Library
 
-> **Based on:** Multi-Agent LLM System Constraints from `rule/constrains.md`  
-> **Focus:** Robust, Production-Ready Documentation Following Best Practices  
-> **Date:** 2025-07-20
-
----
-
-## **Executive Summary**
-
-This document provides specific, actionable prompts to complete comprehensive documentation for the project. The prompts are designed following the constraints and best practices outlined in `rule/constrains.md`, emphasizing:
-
-- **Multi-agent collaboration** and modular architectures
-- **Iterative refinement** and self-correction mechanisms  
-- **Human-in-the-loop** systems for reliability and safety
-- **Robust evaluation** methodologies and continuous improvement
-- **Production-ready** deployment and operational procedures
+> **📚 Complete Documentation Framework for Multi-Agent Systems**  
+> **🛠️ Production-ready templates and actionable prompts**  
+> **⚡ Generate comprehensive documentation in 2-4 hours**
 
 ---
 
-## **1. Project Overview and Purpose Documentation**
+## 🚀 Documentation Overview (5 minutes)
 
-### **Prompt 1.1: Executive Summary and Business Case**
-```markdown
-Create a comprehensive executive summary document (2-3 pages) that includes:
+**What is this guide?** A comprehensive collection of ready-to-use prompts and templates to create production-ready documentation for the Kimi-VL document digitization system, following multi-agent LLM best practices.
 
-**Business Context:**
-- Clear problem statement: Current manual document processing challenges
-- Quantified business impact: Processing time, error rates, resource costs
-- Value proposition: Automation benefits and competitive advantages
-- Market opportunity and target customer segments
+**Why do you need comprehensive documentation?** 
+- ✅ **Team Onboarding**: New developers productive in hours, not days
+- ✅ **System Maintenance**: 60% reduction in support tickets and debugging time
+- ✅ **Compliance & Auditing**: Meets enterprise and regulatory requirements
+- ✅ **Knowledge Preservation**: Critical system knowledge doesn't depend on individuals
 
-**Solution Overview:**
-- Multi-agent system architecture leveraging Kimi-VL
-- Key differentiators from existing solutions
-- Technology stack and integration capabilities
-- Scalability and reliability features
-
-**Financial Analysis:**
-- ROI projections and payback period
-- Implementation costs vs. operational savings
-- Risk assessment and mitigation strategies
-- Success metrics and KPIs for measurement
-
-**Implementation Strategy:**
-- Phased rollout plan with milestones
-- Resource requirements and team structure
-- Timeline and critical dependencies
-- Change management and adoption strategy
+**How does this work?** 
 ```
-
-### **Prompt 1.2: System Vision and Scope**
-```markdown
-Develop a comprehensive vision document that defines:
-
-**System Purpose:**
-- Primary objectives and success criteria
-- Target user personas and use cases
-- Business process transformation goals
-- Long-term vision and roadmap
-
-**Scope Definition:**
-- In-scope: Document types, processing capabilities, integration points
-- Out-of-scope: Limitations and future considerations
-- Assumptions and dependencies
-- Constraints and compliance requirements
-
-**Stakeholder Analysis:**
-- Primary stakeholders and their needs
-- Secondary stakeholders and impact assessment
-- Communication and feedback mechanisms
-- Success criteria for each stakeholder group
+Select Template → Fill in Prompts → Generate Content → Review & Refine → Deploy
 ```
+- **Ready-to-use prompts** for each documentation type
+- **Structured templates** following industry best practices
+- **Quality checkpoints** to ensure completeness
+- **Cross-reference system** for consistency
+
+**What documentation will you create?** 
+- ✅ **Executive & Business**: Business case, ROI analysis, strategic overview
+- ✅ **Technical Architecture**: System design, integration guides, API documentation
+- ✅ **Implementation**: Setup guides, deployment procedures, configuration management
+- ✅ **Operations**: Monitoring, troubleshooting, maintenance procedures
+- ✅ **User Training**: End-user guides, training materials, FAQ resources
+
+**How long will it take?** 
+- ⏱️ **2 hours**: Core technical documentation using prompts
+- ⏱️ **4 hours**: Complete documentation suite with business case
+- ⏱️ **1 day**: Enterprise-grade documentation with training materials
+
+**What are the risks?** 
+- 🔴 **High**: Incomplete documentation leads to system knowledge gaps
+- 🟡 **Medium**: Poor documentation quality affects adoption and maintenance
+- 🟢 **Low**: Time investment pays for itself through reduced support burden
 
 ---
 
-## **2. Technical Architecture and Design Decisions**
+## 📋 Documentation Creation Checklist
 
-### **Prompt 2.1: Multi-Agent System Architecture**
-```markdown
-Document the multi-agent architecture following MACI (Multi-Agent Collaborative Intelligence) principles:
+### **Phase 1: Strategic Documentation (1-2 hours)**
+- [ ] 📊 **Executive Summary** (30 minutes)
+  - Business case and ROI analysis
+  - Strategic value proposition
+  - Implementation roadmap overview
+  - Risk assessment and mitigation
+- [ ] 🏗️ **System Architecture Overview** (30 minutes)
+  - High-level system design
+  - Component interaction diagrams
+  - Technology stack rationale
+  - Scalability and performance considerations
+- [ ] 🎯 **Project Scope & Requirements** (30 minutes)
+  - Functional requirements specification
+  - Non-functional requirements
+  - Success criteria and KPIs
+  - Assumptions and constraints
 
-**System Architecture Overview:**
-- High-level system diagram with agent interactions
-- Multi-agent collaboration patterns (Actor-Critic, Modular Decomposition)
-- Orchestration layer design using Temporal.io
-- External system integration points
+### **Phase 2: Technical Documentation (2-3 hours)**
+- [ ] 🔧 **Implementation Guides** (45 minutes)
+  - Step-by-step setup procedures
+  - Configuration management
+  - Environment requirements
+  - Dependency installation
+- [ ] 🌐 **API & Integration Documentation** (45 minutes)
+  - API endpoint specifications
+  - Integration patterns and examples
+  - Error handling and responses
+  - Authentication and security
+- [ ] 🧪 **Testing & Quality Assurance** (45 minutes)
+  - Testing strategy and procedures
+  - Quality metrics and benchmarks
+  - Automated testing setup
+  - Performance validation
+- [ ] 🚀 **Deployment & Operations** (45 minutes)
+  - Production deployment procedures
+  - Monitoring and alerting setup
+  - Maintenance and updates
+  - Troubleshooting guides
 
-**Agent Specifications:**
-1. **Document Ingestion Agent**
-   - Responsibilities and capabilities
-   - Input sources and monitoring mechanisms
-   - Error handling and retry logic
-   - Performance metrics and SLAs
+### **Phase 3: User & Training Documentation (1-2 hours)**
+- [ ] 👥 **User Documentation** (45 minutes)
+  - End-user guides and tutorials
+  - Feature documentation
+  - Common workflows and use cases
+  - FAQ and troubleshooting
+- [ ] 🎓 **Training Materials** (45 minutes)
+  - Training curriculum design
+  - Hands-on exercises and labs
+  - Assessment and certification
+  - Trainer guides and resources
 
-2. **Pre-processing & Classification Agent**
-   - Image enhancement and quality improvement
-   - Document type classification algorithms
-   - Confidence scoring and validation
-   - Integration with Kimi-VL models
-
-3. **Kimi-VL Extraction Agent**
-   - Data extraction workflows and schemas
-   - Prompt engineering and optimization
-   - Iterative refinement mechanisms
-   - External tool integration
-
-4. **Validation Agent**
-   - Data validation rules and constraints
-   - Cross-reference with existing databases
-   - Confidence assessment and scoring
-   - Error detection and flagging
-
-5. **Human-in-the-Loop Agent**
-   - Review workflow management
-   - User interface and interaction design
-   - Feedback collection and processing
-   - Quality assurance procedures
-
-6. **Integration Agent**
-   - External system connectors
-   - Data transformation and mapping
-   - Event publishing and notifications
-   - Audit trail and logging
-
-**Inter-Agent Communication:**
-- Message passing protocols and formats
-- Event-driven architecture patterns
-- Error propagation and handling
-- Performance monitoring and optimization
-
-**Reliability and Resilience:**
-- Failure detection and recovery mechanisms
-- Circuit breaker patterns and timeouts
-- Data consistency and transaction management
-- Monitoring and alerting strategies
-```
-
-### **Prompt 2.2: Kimi-VL Integration and Optimization**
-```markdown
-Create detailed technical documentation for Kimi-VL integration:
-
-**Model Configuration:**
-- Kimi-VL model selection and versioning
-- Hardware requirements and GPU optimization
-- Memory management and batch processing
-- Performance tuning parameters
-
-**Advanced Prompt Engineering:**
-- Document-specific prompt templates
-- Dynamic prompt generation strategies
-- Context window optimization
-- Multi-turn conversation handling
-
-**Iterative Refinement Framework:**
-- Self-correction mechanisms and feedback loops
-- External tool integration (compilers, validators)
-- Confidence scoring and quality assessment
-- Human feedback incorporation
-
-**Knowledge Integration:**
-- Dynamic RAG implementation
-- Knowledge graph integration patterns
-- External API and database connections
-- Caching and performance optimization
-
-**Performance Optimization:**
-- Batch processing strategies
-- GPU memory optimization
-- Model quantization and compression
-- Latency reduction techniques
-
-**Monitoring and Evaluation:**
-- Performance metrics and benchmarks
-- Quality assessment frameworks
-- A/B testing and experimentation
-- Continuous improvement processes
-```
+**🎯 Success Criteria:**
+- [ ] Documentation covers 100% of system functionality
+- [ ] New team members can onboard using documentation alone
+- [ ] 90% of common issues resolved through documentation
+- [ ] Documentation passes enterprise compliance review
 
 ---
 
-## **3. API Documentation and Specifications**
+## ⚖️ Documentation Type Decision Matrix
 
-### **Prompt 3.1: RESTful API Specification**
-```markdown
-Generate comprehensive OpenAPI/Swagger documentation including:
+### **Documentation Priority Matrix**
 
-**Core Processing APIs:**
-```yaml
-/api/v1/documents:
-  post:
-    summary: Submit document for processing
-    description: Initiates multi-agent processing workflow
-    parameters:
-      - document file (multipart/form-data)
-      - processing options (JSON)
-      - priority level
-      - callback URL
-    responses:
-      201: Processing initiated
-      400: Invalid input
-      429: Rate limit exceeded
+| Document Type | Business Value | Technical Value | Maintenance Effort | Priority | Time Investment |
+|---------------|----------------|-----------------|-------------------|----------|-----------------|
+| **Quick Start Guide** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | **P0** | 1-2 hours |
+| **API Documentation** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | **P0** | 2-3 hours |
+| **System Architecture** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | **P0** | 1-2 hours |
+| **Deployment Guide** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | **P1** | 1-2 hours |
+| **Business Case** | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐ | **P1** | 2-3 hours |
+| **User Training** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | **P2** | 3-4 hours |
+| **Troubleshooting** | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | **P2** | 2-4 hours |
 
-/api/v1/documents/{id}/status:
-  get:
-    summary: Get processing status
-    description: Returns current workflow state and progress
-    responses:
-      200: Status information
-      404: Document not found
+### **Documentation Strategy by Team Size**
 
-/api/v1/documents/{id}/results:
-  get:
-    summary: Retrieve extraction results
-    description: Returns structured data and confidence scores
-    responses:
-      200: Extraction results
-      202: Processing in progress
-      404: Document not found
-```
-
-**Human-in-the-Loop APIs:**
-```yaml
-/api/v1/review/queue:
-  get:
-    summary: Get documents requiring review
-    description: Returns prioritized list for human review
-    parameters:
-      - confidence_threshold
-      - document_type
-      - assigned_reviewer
-    responses:
-      200: Review queue
-
-/api/v1/review/{id}/submit:
-  post:
-    summary: Submit review feedback
-    description: Provides human corrections and validation
-    parameters:
-      - corrections (JSON)
-      - approval_status
-      - comments
-    responses:
-      200: Review submitted
-      400: Invalid feedback
-```
-
-**Integration and Monitoring APIs:**
-- Webhook configuration and management
-- System health and metrics endpoints
-- Configuration management APIs
-- Audit trail and logging access
-```
-
-### **Prompt 3.2: Integration Patterns and Guidelines**
-```markdown
-Document external system integration patterns:
-
-**Database Integration:**
-- Connection pooling and management
-- Transaction handling and consistency
-- Data validation and enrichment
-- Performance optimization strategies
-
-**Business System Connectors:**
-- ERP system integration patterns
-- Data format transformation
-- Error handling and retry logic
-- Authentication and authorization
-
-**Event-Driven Architecture:**
-- Message queue integration (RabbitMQ/Kafka)
-- Event schemas and versioning
-- Dead letter queue handling
-- Monitoring and alerting
-
-**Security and Compliance:**
-- Authentication mechanisms (OAuth 2.0, JWT)
-- Authorization and access control
-- Data encryption and privacy
-- Audit logging and compliance
-```
+| Team Size | Essential Documents | Optional Documents | Total Time | Focus |
+|-----------|-------------------|-------------------|------------|-------|
+| **1-3 developers** | Quick Start, API, Architecture | Business Case | 4-6 hours | **Technical focus** |
+| **4-10 developers** | + Deployment, Troubleshooting | User Training | 8-12 hours | **Operational focus** |
+| **10+ developers** | + Business Case, Training | Process Documentation | 15-20 hours | **Enterprise focus** |
 
 ---
 
-## **4. Setup and Installation Instructions**
+## 🛠️ Documentation Templates & Prompts
 
-### **Prompt 4.1: Development Environment Setup**
+### **1. Executive Summary & Business Case Template**
+
 ```markdown
-Create comprehensive development setup guide:
+# {System Name} - Executive Summary & Business Case
 
-**Prerequisites and Dependencies:**
-- System requirements (CPU, RAM, GPU, storage)
-- Software dependencies and versions
-- Development tools and IDEs
-- Testing frameworks and utilities
+## 🚀 Quick Business Overview (2 minutes)
 
-**Multi-Agent System Setup:**
+**What is {System Name}?** [One sentence description of the system and its purpose]
+
+**Why do we need it?** [Primary business problem being solved]
+
+**How does it work?** [High-level solution approach]
+
+**What's the business impact?** [Key metrics: cost savings, time reduction, accuracy improvement]
+
+**How long to implement?** [Timeline and key milestones]
+
+**What's the investment?** [Total cost and ROI timeline]
+
+## 📊 Business Problem & Opportunity
+
+### Current State Challenges
+- **Manual Processing Cost**: ${current_cost}/month with {error_rate}% error rate
+- **Processing Time**: {current_time} hours per document average
+- **Scalability Issues**: {current_bottlenecks}
+
+### Market Opportunity
+- **Total Addressable Market**: {market_size}
+- **Target Customer Segments**: {segments}
+- **Competitive Advantage**: {differentiators}
+
+## 💰 Financial Analysis
+
+| Metric | Year 1 | Year 2 | Year 3 |
+|--------|--------|--------|--------|
+| **Implementation Cost** | ${cost_y1} | ${cost_y2} | ${cost_y3} |
+| **Operational Savings** | ${savings_y1} | ${savings_y2} | ${savings_y3} |
+| **Net ROI** | {roi_y1}% | {roi_y2}% | {roi_y3}% |
+
+### Break-even Analysis
+- **Break-even Point**: {months} months
+- **3-Year NPV**: ${npv}
+- **IRR**: {irr}%
+
+## 🎯 Success Metrics & KPIs
+
+### Primary Metrics
+- **Processing Accuracy**: Target >98% (vs. current {current_accuracy}%)
+- **Processing Speed**: Target <{target_time} minutes (vs. current {current_time})
+- **Cost Reduction**: Target {target_reduction}% operational cost reduction
+- **User Satisfaction**: Target >{target_satisfaction}/5 rating
+
+### Secondary Metrics
+- **System Uptime**: >99.9%
+- **Training Time**: <{training_time} hours for new users
+- **Support Tickets**: <{target_tickets}/month
+
+## ⚠️ Risk Assessment
+
+| Risk Category | Probability | Impact | Mitigation Strategy |
+|---------------|-------------|---------|-------------------|
+| **Technical Implementation** | {prob}% | {impact} | {mitigation} |
+| **User Adoption** | {prob}% | {impact} | {mitigation} |
+| **Integration Complexity** | {prob}% | {impact} | {mitigation} |
+```
+
+### **2. System Architecture Documentation Template**
+
+```markdown
+# {System Name} - System Architecture Guide
+
+> **🏗️ Complete technical architecture and design decisions**  
+> **📐 For developers, architects, and technical stakeholders**
+
+## 🚀 Architecture Overview (5 minutes)
+
+**What is the system architecture?** [High-level description of the multi-agent system design]
+
+**Why this architecture?** [Key architectural decisions and rationale]
+
+**How do components interact?** [Brief description of data flow and component communication]
+
+**What are the key technologies?** [Primary technology stack with rationale]
+
+## 🛠️ System Components
+
+### **Multi-Agent Architecture**
+
+```mermaid
+graph TB
+    A[Document Input] --> B[Document Classifier Agent]
+    B --> C[Data Extraction Agent]
+    C --> D[Validation Agent]
+    D --> E[Human Review Agent]
+    E --> F[Results Storage]
+    
+    G[Kimi-VL Service] --> B
+    G --> C
+    G --> D
+    
+    H[LLM Orchestrator] --> B
+    H --> C
+    H --> D
+    H --> E
+```
+
+### **Component Specifications**
+
+| Component | Technology | Responsibility | Performance Requirements |
+|-----------|------------|----------------|-------------------------|
+| **Document Classifier** | {tech_stack} | {responsibilities} | {performance_reqs} |
+| **Data Extraction** | {tech_stack} | {responsibilities} | {performance_reqs} |
+| **Validation Agent** | {tech_stack} | {responsibilities} | {performance_reqs} |
+| **Human Review** | {tech_stack} | {responsibilities} | {performance_reqs} |
+
+## 🔌 Integration Architecture
+
+### **External System Integrations**
+- **Kimi-VL Service**: {integration_details}
+- **Database Systems**: {database_integrations}
+- **File Storage**: {storage_integrations}
+- **Monitoring Systems**: {monitoring_integrations}
+
+### **API Design Principles**
+- **RESTful APIs**: Following OpenAPI 3.0 specification
+- **Authentication**: OAuth 2.0 / JWT tokens
+- **Rate Limiting**: {rate_limits} requests per minute
+- **Error Handling**: Standardized error responses
+
+## 📊 Performance & Scalability
+
+### **Performance Specifications**
+- **Processing Speed**: <{target_time} seconds per document
+- **Throughput**: {max_throughput} documents per hour
+- **Concurrent Users**: Support for {max_users} simultaneous users
+- **Response Time**: <{response_time}ms for API calls
+
+### **Scalability Design**
+- **Horizontal Scaling**: Auto-scaling based on queue depth
+- **Load Balancing**: Round-robin with health checks
+- **Caching Strategy**: Redis for session/result caching
+- **Database Optimization**: Connection pooling and query optimization
+
+## 🔒 Security Architecture
+
+### **Security Measures**
+- **Data Encryption**: AES-256 at rest, TLS 1.3 in transit
+- **Access Control**: Role-based access control (RBAC)
+- **Authentication**: Multi-factor authentication support
+- **Audit Logging**: Complete audit trail for compliance
+
+### **Compliance Considerations**
+- **Data Privacy**: GDPR/CCPA compliance measures
+- **Data Retention**: Configurable retention policies
+- **Access Logging**: Comprehensive access and operation logging
+```
+
+### **3. Quick Start Guide Template**
+
+```markdown
+# {System Name} - Quick Start Guide
+
+> **⚡ Get from zero to processing documents in 30 minutes**  
+> **🎯 Perfect for developers who need immediate results**
+
+## 🚀 Quick Start (5 minutes)
+
+**What is this?** [Brief system description and primary function]
+
+**Why do I need it?** [Key benefits and use cases]
+
+**How does it work?** [Simple workflow description]
+
+**What do I need to implement?** [Prerequisites checklist]
+
+**How long will it take?** [Time estimates for different setup levels]
+
+**What are the risks?** [Key challenges and mitigation strategies]
+
+## 📋 Implementation Checklist
+
+### **Phase 1: Environment Setup (10-15 minutes)**
+- [ ] ✅ **Prerequisites verified** (Python, Docker, GPU if needed)
+- [ ] ✅ **Repository cloned** and virtual environment created
+- [ ] ✅ **Dependencies installed** from requirements.txt
+- [ ] ✅ **Configuration files** created from templates
+
+### **Phase 2: Basic Configuration (10-15 minutes)**
+- [ ] ⚙️ **API keys configured** (OpenAI, Kimi-VL, etc.)
+- [ ] ⚙️ **Database initialized** with sample data
+- [ ] ⚙️ **Services started** and health checks passed
+- [ ] ⚙️ **Sample document processed** successfully
+
+### **Phase 3: Validation (5-10 minutes)**
+- [ ] 🧪 **End-to-end test** completed
+- [ ] 🧪 **API endpoints** responding correctly
+- [ ] 🧪 **Monitoring dashboard** accessible
+- [ ] 🧪 **Sample workflows** executed successfully
+
+## ⚡ 5-Minute Quick Start
+
+### **Option A: Docker Quick Start (Recommended)**
+
 ```bash
-# Environment preparation
+# 1. Clone and navigate
+git clone {repo_url}
+cd {project_name}
+
+# 2. Start all services (single command!)
+docker-compose up -d
+
+# 3. Test with sample document
+curl -X POST "http://localhost:8000/documents/process" \
+  -F "file=@sample_docs/invoice.pdf"
+
+# ✅ Success! You should get structured JSON output
+```
+
+### **Option B: Local Development Setup**
+
+```bash
+# 1. Environment setup
 python -m venv venv
-source venv/bin/activate
-
-# Core dependencies
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-pip install kimi-vl torch torchvision
 
-# Development tools
-pip install pytest black flake8 mypy
-pip install docker-compose kubernetes
+# 2. Configuration
+cp config/config.template.yaml config/config.yaml
+# Edit config.yaml with your API keys
 
-# Database setup
-docker-compose up -d postgres redis
-python manage.py migrate
+# 3. Start services
+python app.py
+
+# 4. Test processing
+python test_basic.py
 ```
 
-**Kimi-VL Configuration:**
+## 🔧 Configuration
+
+### **Essential Configuration**
+
 ```yaml
-# config/development.yaml
-kimi_vl:
-  model_path: "kimi-vl-base"
-  device: "cuda"
-  max_batch_size: 4
-  precision: "fp16"
+# config.yaml - Minimal working configuration
+system:
+  environment: "development"
+  debug: true
+  log_level: "INFO"
 
-agents:
-  ingestion:
-    max_workers: 2
-    timeout: 300
-  extraction:
-    confidence_threshold: 0.95
-    max_retries: 3
+apis:
+  openai_api_key: "${OPENAI_API_KEY}"
+  kimi_vl_endpoint: "${KIMI_VL_ENDPOINT}"
+
+processing:
+  max_concurrent_documents: 5
+  timeout_seconds: 300
+  confidence_threshold: 0.95
+
+storage:
+  input_folder: "./data/input"
+  output_folder: "./data/output"
 ```
 
-**Testing and Validation:**
-- Unit test execution procedures
-- Integration test setup
-- Performance benchmarking
-- Quality assurance checks
-```
+## 🧪 Testing & Validation
 
-### **Prompt 4.2: Production Deployment Guide**
-```markdown
-Document production deployment procedures:
+### **Basic Functionality Test**
 
-**Infrastructure Requirements:**
-- Hardware specifications and scaling
-- Network configuration and security
-- Storage requirements and backup
-- Monitoring and logging infrastructure
-
-**Container Orchestration:**
-```yaml
-# kubernetes/deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kimi-vl-processor
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: kimi-vl-processor
-  template:
-    spec:
-      containers:
-      - name: processor
-        image: kimi-vl:latest
-        resources:
-          requests:
-            memory: "8Gi"
-            nvidia.com/gpu: 1
-          limits:
-            memory: "16Gi"
-            nvidia.com/gpu: 1
-```
-
-**Security Hardening:**
-- Network security and firewall rules
-- Access control and authentication
-- Data encryption and key management
-- Vulnerability scanning and updates
-
-**Monitoring and Observability:**
-- Prometheus metrics collection
-- Grafana dashboard configuration
-- Log aggregation and analysis
-- Alerting rules and escalation
-```
-
----
-
-## **5. Usage Examples and Tutorials**
-
-### **Prompt 5.1: Multi-Agent Workflow Examples**
-```markdown
-Provide comprehensive usage examples demonstrating:
-
-**Basic Document Processing:**
 ```python
-# Example: Commercial Invoice Processing
-from kimi_vl_system import DocumentProcessor
+# test_system.py - Verify everything works
+import requests
+import json
 
-processor = DocumentProcessor()
-
-# Submit document for processing
-result = processor.process_document(
-    file_path="invoice.pdf",
-    document_type="commercial_invoice",
-    options={
-        "confidence_threshold": 0.95,
-        "enable_human_review": True,
-        "priority": "high"
-    }
-)
-
-# Monitor processing status
-status = processor.get_status(result.document_id)
-print(f"Status: {status.state}, Progress: {status.progress}%")
-
-# Retrieve results
-if status.state == "completed":
-    extracted_data = processor.get_results(result.document_id)
-    print(f"Invoice Number: {extracted_data.invoice_number}")
-    print(f"Total Amount: {extracted_data.total_amount}")
-```
-
-**Human-in-the-Loop Workflow:**
-```python
-# Example: Review and Correction Process
-from kimi_vl_system import ReviewManager
-
-review_mgr = ReviewManager()
-
-# Get documents requiring review
-pending_reviews = review_mgr.get_pending_reviews(
-    confidence_threshold=0.9,
-    document_type="packing_list"
-)
-
-# Submit review feedback
-for review in pending_reviews:
-    corrections = {
-        "shipper_name": "Corrected Company Name",
-        "total_packages": 15
-    }
+def test_system_health():
+    # Test API health
+    response = requests.get("http://localhost:8000/health")
+    assert response.status_code == 200
+    print("✅ API health check passed")
     
-    review_mgr.submit_review(
-        document_id=review.document_id,
-        corrections=corrections,
-        approval_status="approved",
-        reviewer_id="user123"
-    )
-```
-
-**Error Handling and Recovery:**
-```python
-# Example: Robust Error Handling
-try:
-    result = processor.process_document("document.pdf")
-except ProcessingError as e:
-    if e.error_type == "low_confidence":
-        # Route to human review
-        review_mgr.queue_for_review(e.document_id)
-    elif e.error_type == "format_unsupported":
-        # Log and notify
-        logger.error(f"Unsupported format: {e.details}")
+    # Test document processing
+    with open("sample_docs/invoice.pdf", "rb") as f:
+        files = {"file": f}
+        response = requests.post("http://localhost:8000/documents/process", files=files)
+    
+    if response.status_code == 200:
+        result = response.json()
+        print(f"✅ Document processed: {result['document_type']}")
+        print(f"   Confidence: {result['confidence']:.2f}")
+        return True
     else:
-        # Retry with different parameters
-        result = processor.retry_processing(
-            e.document_id,
-            options={"model_variant": "enhanced"}
-        )
-```
-```
+        print(f"❌ Processing failed: {response.text}")
+        return False
 
-### **Prompt 5.2: Advanced Configuration Tutorials**
-```markdown
-Create advanced configuration guides covering:
-
-**Custom Agent Development:**
-```python
-# Example: Custom Validation Agent
-from kimi_vl_system.agents import BaseAgent
-
-class CustomValidationAgent(BaseAgent):
-    def __init__(self, config):
-        super().__init__(config)
-        self.business_rules = self.load_business_rules()
-    
-    async def validate(self, extracted_data, document_type):
-        # Custom validation logic
-        validation_results = []
-        
-        for rule in self.business_rules[document_type]:
-            result = await self.apply_rule(rule, extracted_data)
-            validation_results.append(result)
-        
-        return self.aggregate_results(validation_results)
-    
-    def apply_rule(self, rule, data):
-        # Implement custom business logic
-        pass
+if __name__ == "__main__":
+    success = test_system_health()
+    print("🎉 System ready!" if success else "⚠️ Check troubleshooting section")
 ```
 
-**Prompt Engineering Optimization:**
-```python
-# Example: Dynamic Prompt Generation
-class PromptOptimizer:
-    def __init__(self):
-        self.templates = self.load_templates()
-        self.performance_history = {}
-    
-    def generate_prompt(self, document_type, context):
-        # Select best performing template
-        template = self.select_optimal_template(document_type)
-        
-        # Customize based on context
-        prompt = template.format(
-            document_type=document_type,
-            context_info=context,
-            examples=self.get_relevant_examples(document_type)
-        )
-        
-        return prompt
-    
-    def update_performance(self, prompt_id, accuracy_score):
-        # Track performance for optimization
-        self.performance_history[prompt_id] = accuracy_score
+## 🔧 Troubleshooting
+
+### **Common Issues**
+
+| Issue | Symptoms | Quick Fix |
+|-------|----------|-----------|
+| **API Key Missing** | Authentication errors | Set environment variables or update config.yaml |
+| **Service Not Starting** | Connection refused | Check port availability and service dependencies |
+| **Processing Timeout** | Requests timing out | Increase timeout_seconds in configuration |
+| **Out of Memory** | System crashes | Reduce max_concurrent_documents or add more RAM |
+
+### **Health Check Commands**
+
+```bash
+# Check system health
+curl "http://localhost:8000/health"
+
+# Check service logs
+docker-compose logs -f
+
+# Verify configuration
+python -c "import yaml; print(yaml.safe_load(open('config/config.yaml')))"
 ```
 
-**Knowledge Graph Integration:**
-```python
-# Example: Dynamic Knowledge Integration
-from kimi_vl_system.knowledge import KnowledgeGraph
+## 🎯 Success Criteria
 
-class DynamicRAG:
-    def __init__(self, kg_endpoint):
-        self.kg = KnowledgeGraph(kg_endpoint)
-        self.retriever = VectorRetriever()
-    
-    async def enhance_extraction(self, document_data, query):
-        # Retrieve relevant knowledge
-        vector_results = await self.retriever.search(query)
-        kg_results = await self.kg.query_entities(document_data)
-        
-        # Combine and rank results
-        enhanced_context = self.merge_knowledge_sources(
-            vector_results, kg_results
-        )
-        
-        return enhanced_context
-```
+- [ ] API responds to health checks
+- [ ] Successfully processes sample documents
+- [ ] Returns structured JSON output
+- [ ] Confidence scores >0.8 for test documents
+- [ ] Processing time <30 seconds per document
+
+## 🚀 Next Steps
+
+1. **Process Your Documents**: Replace samples with real business documents
+2. **Customize Configuration**: Adjust settings for your use case
+3. **Set Up Monitoring**: Enable logging and metrics collection
+4. **Plan Production Deployment**: Review deployment guide
 ```
 
 ---
 
-## **6. Implementation Priority and Timeline**
+## 📊 Documentation Quality Checklist
 
-### **Phase 1: Foundation Documentation (Weeks 1-2)**
-1. **Multi-agent system architecture** - Core design principles
-2. **Kimi-VL integration specifications** - Technical implementation
-3. **Development environment setup** - Getting started guide
-4. **Basic API documentation** - Core endpoints and workflows
+### **Content Quality Standards**
+- [ ] **Clarity**: Can junior developers understand and follow instructions?
+- [ ] **Completeness**: Are all necessary steps and information included?
+- [ ] **Accuracy**: Has technical content been verified through testing?
+- [ ] **Consistency**: Does formatting and terminology match across documents?
+- [ ] **Currency**: Is information up-to-date and reflects current system state?
 
-### **Phase 2: Core Implementation (Weeks 3-4)**
-1. **Comprehensive testing strategy** - Quality assurance framework
-2. **Human-in-the-loop workflows** - Review and correction processes
-3. **Production deployment procedures** - Infrastructure and operations
-4. **Security and compliance guidelines** - Data protection and privacy
+### **User Experience Standards**
+- [ ] **Quick Start**: Can users achieve first success within 30 minutes?
+- [ ] **Progressive Disclosure**: Information organized from basic to advanced?
+- [ ] **Visual Aids**: Appropriate use of diagrams, code blocks, and tables?
+- [ ] **Cross-References**: Proper links between related sections?
+- [ ] **Troubleshooting**: Common issues and solutions provided?
 
-### **Phase 3: Advanced Features (Weeks 5-6)**
-1. **Advanced configuration tutorials** - Customization and optimization
-2. **Integration patterns and examples** - External system connectivity
-3. **Evaluation and benchmarking** - Performance measurement
-4. **Operational procedures** - Monitoring and maintenance
-
-### **Phase 4: Production Readiness (Weeks 7-8)**
-1. **User training materials** - End-user documentation
-2. **Contributing guidelines** - Development standards
-3. **Performance monitoring** - Observability and alerting
-4. **Continuous improvement** - Feedback loops and optimization
+### **Maintenance Standards**
+- [ ] **Version Control**: Documentation versioned with code changes?
+- [ ] **Review Process**: Regular review and update schedule established?
+- [ ] **Feedback Loop**: User feedback collection and incorporation process?
+- [ ] **Ownership**: Clear responsibility for each document type?
+- [ ] **Metrics**: Documentation usage and effectiveness tracking?
 
 ---
 
-## **7. Success Criteria and Validation**
+## 🚀 Ready-to-Use Prompt Collection
 
-Each documentation prompt should result in:
+### **For Business Stakeholders**
+```
+Create a {document_type} that explains {system_name} in business terms:
+- Focus on ROI, cost savings, and business value
+- Include specific metrics and success stories
+- Use executive-friendly language and visuals
+- Provide clear implementation timeline and milestones
+- Address common business concerns and risks
+```
 
-✅ **Completeness** - Covers all aspects of the topic comprehensively  
-✅ **Actionability** - Provides specific, executable instructions  
-✅ **Accuracy** - Technically correct and up-to-date information  
-✅ **Usability** - Clear, well-structured, and easy to follow  
-✅ **Maintainability** - Easy to update and keep current  
-✅ **Compliance** - Follows security and regulatory requirements  
+### **For Technical Teams**
+```
+Generate a {document_type} for {system_name} that includes:
+- Step-by-step implementation procedures
+- Code examples and configuration samples
+- Architecture diagrams and technical specifications
+- Troubleshooting guides and error resolution
+- Performance benchmarks and optimization tips
+```
 
-The documentation should enable:
-- **Developers** to implement and extend the system
-- **Operators** to deploy and maintain the system
-- **Users** to effectively utilize the system
-- **Stakeholders** to understand value and progress
+### **For End Users**
+```
+Write a {document_type} for {system_name} that covers:
+- Simple, task-oriented instructions
+- Screenshots and visual guides where helpful
+- Common workflows and use cases
+- FAQ section with practical questions
+- Getting help and support contact information
+```
+
+---
+
+**🎯 Documentation Success:** Use these templates and prompts to create comprehensive, user-friendly documentation that accelerates adoption, reduces support burden, and ensures long-term system maintainability. Start with the Quick Start Guide for immediate impact! 📚
