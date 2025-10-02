@@ -1,0 +1,159 @@
+{
+  "name": "Beyan Hybrid Agentic Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "hybrid-orchestrate",
+        "options": {}
+      },
+      "id": "webhook-hybrid",
+      "name": "Hybrid Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "beyan-hybrid-upload"
+    },
+    {
+      "parameters": {
+        "url": "http://kimi-vl:8001/orchestrate",
+        "options": {
+          "bodyContentType": "multipart-form-data"
+        },
+        "sendBinaryData": true,
+        "binaryPropertyName": "file"
+      },
+      "id": "orchestrate-http",
+      "name": "Kimi-VL Orchestrate",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "filename",
+              "value": "={{ $json.filename }}"
+            },
+            {
+              "name": "status",
+              "value": "completed"
+            }
+          ],
+          "json": [
+            {
+              "name": "classification",
+              "value": "={{ null }}"
+            },
+            {
+              "name": "extraction",
+              "value": "={{ $json.data.extracted_fields }}"
+            },
+            {
+              "name": "validation",
+              "value": "={{ $json.data.metadata.router }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "prepare-db-row",
+      "name": "Prepare DB Row",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2.1,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "processed_documents",
+        "columns": "filename, classification, extraction, validation, status",
+        "additionalFields": {},
+        "options": {}
+      },
+      "id": "store-results",
+      "name": "Store Results",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [920, 300],
+      "credentials": {
+        "postgres": {
+          "id": "postgres-credentials",
+          "name": "PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Hybrid Orchestration Complete ✅\n\n**File:** {{ $json.filename }}\n**Status:** {{ $json.status }}\n\n**Confidence:** {{ $('Kimi-VL Orchestrate').item(0).json.data.confidence }}\n**Pages:** {{ $('Kimi-VL Orchestrate').item(0).json.data.metadata.pages }}\n\nData saved to database.",
+        "options": {}
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1140, 300]
+    }
+  ],
+  "connections": {
+    "Hybrid Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "Kimi-VL Orchestrate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kimi-VL Orchestrate": {
+      "main": [
+        [
+          {
+            "node": "Prepare DB Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare DB Row": {
+      "main": [
+        [
+          {
+            "node": "Store Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Results": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "id": "beyan-workflows",
+      "name": "Beyan Workflows"
+    }
+  ],
+  "triggerCount": 1,
+  "versionId": "1"
+}

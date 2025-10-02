@@ -1,0 +1,21 @@
+# BMAD Framework Files
+# Exclude all BMAD directories and files to keep repository clean
+# These are generated files that don't need to be tracked in git
+
+# .bmad-core/ (unignored to enable devLoadAlwaysFiles wiring)
+.bmad-creative-writing/
+.bmad-infrastructure-devops/
+
+# Individual BMAD files (if any are generated outside the directories)
+AGENTS.md
+
+# Common development ignores
+node_modules/
+*.log
+.DS_Store
+.env
+.env.local
+.env.production
+.env.development
+
+

@@ -62,6 +62,13 @@ docker-compose logs -f n8n
 - **Kimi-VL API**: http://localhost:8001
 - **API Documentation**: http://localhost:8001/docs
 
+### 4. Hybrid Orchestration (Recommended)
+
+- Minimal n8n flow → single HTTP call to Python orchestrator
+- Endpoint: `POST /orchestrate` — staged header + line-items extraction (multi-page supported)
+- Hybrid workflow JSON: `n8n/workflows/hybrid-agentic-workflow.json`
+- Testing Guide: `docs/n8n-testing-guide.md` (see Hybrid section)
+
 ### 4. First Document Processing
 
 1. Access n8n at http://localhost:5678 (admin/beyan_admin)
@@ -77,21 +84,27 @@ docker-compose logs -f n8n
 graph TB
     A[Document Upload] --> B[n8n Webhook]
     B --> C[Kimi-VL Service]
-    C --> D[OpenAI Classification]
-    D --> E{Confidence Check}
-    E -->|High| F[OpenAI Extraction]
-    E -->|Low| G[Human Review]
-    G --> F
-    F --> H[OpenAI Validation]
-    H --> I[PostgreSQL Storage]
-    I --> J[Success Notification]
+    C --> D{Mode}
+    D -->|Classic| E[OpenAI Classification]
+    E --> F{Confidence Check}
+    F -->|High| G[OpenAI Extraction]
+    F -->|Low| H[Human Review]
+    H --> G
+    G --> I[OpenAI Validation]
+    I --> J[PostgreSQL Storage]
+    J --> K[Success Notification]
+
+    D -->|Hybrid| L[/orchestrate (Python)/]
+    L --> M[Staged Header + Line Items]
+    M --> N[PostgreSQL Storage]
+    N --> O[Success Notification]
 ```
 
 ### Technology Stack
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
-| **Orchestration** | n8n | Visual workflow automation |
+| **Orchestration** | n8n (classic) / Python `/orchestrate` (hybrid) | Visual flow / code-native orchestrator |
 | **Document AI** | Kimi-VL | Vision-language model for document understanding |
 | **Language AI** | OpenAI GPT-4 | Classification, extraction, validation |
 | **Database** | PostgreSQL | Data persistence and workflow state |
@@ -205,6 +218,7 @@ open http://localhost:3000  # admin/admin
 ### Quick Links
 
 - **[n8n Integration Guide](docs/ai-docs/n8n-integration-guide.md)** - Complete n8n setup and workflow patterns
+- **[n8n Testing Guide](docs/n8n-testing-guide.md)** - Step-by-step E2E tests (classic + hybrid)
 - **[System Design](docs/system_docs/system_design.md)** - Architecture and design decisions
 - **[API Documentation](http://localhost:8001/docs)** - Interactive API documentation
 - **[Troubleshooting Guide](docs/system_docs/Quick_Start_Guide.md#troubleshooting)** - Common issues and solutions

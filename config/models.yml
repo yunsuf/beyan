@@ -1,0 +1,59 @@
+# Model Portfolio for OpenRouter-based routing (Phase 1)
+
+providers:
+  openrouter:
+    type: openrouter
+    api_key_env: OPENROUTER_API_KEY
+    base_url: https://openrouter.ai/api/v1
+
+models:
+  # Coordinator (optional) - cheap text-only model
+  coord.gpt4o-mini:
+    provider: openrouter
+    name: openai/gpt-4o-mini
+    capabilities: [router, text, json]
+    latency_class: low
+    price_per_1k_input_usd: 0.005
+    tokens: { max_input: 32000, max_output: 4000 }
+
+  # Mid-tier vision model
+  vision.gpt4o-mini:
+    provider: openrouter
+    name: openai/gpt-4o-mini
+    capabilities: [vision, text, json]
+    latency_class: medium
+    price_per_1k_input_usd: 0.01
+    tokens: { max_input: 32000, max_output: 4000 }
+
+  # High-accuracy specialist
+  vision.claude-sonnet-3-7:
+    provider: openrouter
+    name: anthropic/claude-3.7-sonnet
+    capabilities: [vision, text, json]
+    latency_class: high
+    price_per_1k_input_usd: 0.03
+    tokens: { max_input: 200000, max_output: 4000 }
+
+  # Google fast vision
+  vision.gemini-flash-1-5:
+    provider: openrouter
+    name: google/gemini-flash-1.5
+    capabilities: [vision, text, json]
+    latency_class: medium
+    price_per_1k_input_usd: 0.008
+    tokens: { max_input: 100000, max_output: 4000 }
+
+defaults:
+  coordinator: coord.gpt4o-mini
+  fallbacks:
+    - vision.gemini-flash-1-5
+    - vision.gpt4o-mini
+    - vision.claude-sonnet-3-7
+
+constraints:
+  hard:
+    - require_json_output: true
+    - must_have_capabilities: [vision, json]
+  soft:
+    - prefer_cost: low
+    - prefer_latency: medium

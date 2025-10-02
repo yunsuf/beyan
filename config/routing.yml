@@ -1,0 +1,43 @@
+# Routing policy for OpenRouter-only Phase 1
+
+features:
+  # computed at runtime in /orchestrate
+  # - page_count (int)
+  # - doc_type (str)
+  # - budget (str: low|medium|high)
+  # - table_density (float 0..1)
+  # - size_bytes (int)
+  # - offline_mode (bool)
+  # - required_capabilities (list)
+
+rules:
+  - name: small-invoice-cheap
+    when:
+      all:
+        - task in ["header_extraction", "line_items"]
+        - doc_type == "invoice"
+        - page_count <= 3
+        - budget in ["low", "medium"]
+    choose: vision.gemini-flash-1-5
+
+  - name: heavy-tables-high-accuracy
+    when:
+      any:
+        - page_count > 10
+        - expected_line_items > 50
+    choose: vision.claude-sonnet-3-7
+
+  - name: default-mid-tier
+    when:
+      all:
+        - task in ["header_extraction", "line_items"]
+    choose: vision.gpt4o-mini
+
+fallbacks:
+  order:
+    - configured_defaults
+    - registry_defaults
+
+retry_policy:
+  attempts: 1
+  backoff_ms: 500

@@ -1,0 +1,18 @@
+{
+  "text_content": "Extracted text from 2640316788_Commercial Invoice_1.pdf\n\nThis is mock extracted text content.",
+  "confidence": 0.92,
+  "metadata": {
+    "pages": 1,
+    "language": "en",
+    "document_type": "commercial_invoice",
+    "processing_method": "kimi-vl",
+    "model_version": "1.0.0"
+  },
+  "extracted_fields": {
+    "invoice_number": "INV-2024-001",
+    "date": "2024-01-28",
+    "total_amount": 1250.0,
+    "currency": "USD"
+  },
+  "processing_time_seconds": 1.004257
+}
